@@ -13,7 +13,6 @@ author:
   linkedin_username:  joshgerdes
 
 # Build settings
-source: src
 destination: _site
 paginate: 10
 permalink: /:year/:title/
@@ -26,4 +25,4 @@ kramdown:
   # do not replace newlines by <br>s
   hard_wrap: false
 
-exclude: ['README.md', 'Gemfile', 'Gemfile.lock']
+exclude: ['README.md', 'Gemfile', 'Gemfile.lock', 'src']
