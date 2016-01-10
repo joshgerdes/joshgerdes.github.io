@@ -1,0 +1,29 @@
+# Site settings
+title: Josh Gerdes
+description: 'Founder of Lost Leaf Studio, developer, consultant, cyclist, soccer fan, nature enthusiast and lover of beer.'
+url: 'http://joshgerdes.com' 
+baseurl: '/'
+google_analytics: 'UA-501066-1'
+
+author:
+  name: 'Josh Gerdes'
+  email: josh@joshgerdes.com
+  twitter_username: joshgerdes
+  github_username:  joshgerdes
+  linkedin_username:  joshgerdes
+
+# Build settings
+source: src
+destination: _site
+paginate: 10
+permalink: /:year/:title/
+markdown: kramdown
+highlighter: pygments
+
+kramdown:
+  # use Github Flavored Markdown
+  input: GFM
+  # do not replace newlines by <br>s
+  hard_wrap: false
+
+exclude: ['README.md', 'Gemfile', 'Gemfile.lock']

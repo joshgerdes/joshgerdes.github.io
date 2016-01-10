@@ -1,0 +1,3 @@
+﻿User-agent: *
+Sitemap: http://joshgerdes.com/sitemap.xml
+Disallow: /ghost/
