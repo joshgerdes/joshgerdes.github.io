@@ -1,5 +1,4 @@
 ---
-layout: post
 title: How to add your profile photo to a page in Ghost
 date: '2015-02-02 04:00:00'
 tags: [ghost, test]
@@ -10,12 +9,14 @@ I thought with the new year I should spruce up my online presence. So I decided 
 If you're interested in adding you profile photo to a page and/or template just do the following:
 
 Add this html to the location where you want your profile image shown:
-{% highlight html %}
+
+``` html
 <img src="{{#if posts.[0]}}{{posts.[0].author.image}}{{else}}{{post.author.image}}{{/if}}" class="profile-image" alt="My Profile Photo"/>
-{% endhighlight %}
+```
 
 Add this to your css file:
-{% highlight css %}
+
+``` css
 .profile-image {
       position: relative;
       width: 100px;
@@ -23,6 +24,6 @@ Add this to your css file:
       border: 3px solid #fff;
       border-radius:100%;
 }
-{% endhighlight %}
+```
 
 And if all went well you'll see the profile image similar to what you see on this site. Enjoy.

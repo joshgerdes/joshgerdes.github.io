@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Jekyll-Uno - a minimal, responsive theme for Jekyll
 date: '2016-01-09 23:28:00'
 tags: [jekyll]

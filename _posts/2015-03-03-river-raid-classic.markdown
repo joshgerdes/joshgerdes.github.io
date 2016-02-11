@@ -1,5 +1,4 @@
 ---
-layout: post
 title: River Raid Classic
 date: '2015-03-03 14:50:00'
 tags: [javascript, phaser, mobile]

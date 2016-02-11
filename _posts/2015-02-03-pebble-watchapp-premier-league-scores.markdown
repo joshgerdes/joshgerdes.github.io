@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 'Pebble Watchapp: Premier League Scores'
 date: '2015-02-03 16:00:00'
 tags: [pebble, javascript, soccer]
