@@ -14,11 +14,11 @@ But for now just check out the game details [here](http://lostleafstudio.com/riv
 
 Cheers!
 
-![iPhone 6 Screenshot](/content/images/projects/river-raid-classic-iphone6.png)
+![iPhone 6 Screenshot](/images/projects/river-raid-classic-iphone6.png)
 
 ### Download Now for iOS or Android:
-[![Download on the App Store](/content/images/projects/app-store-badge.png")](https://itunes.apple.com/us/app/river-raid-classic/id968418947?ls=1&mt=8" target="_blank)
+[![Download on the App Store](/images/projects/app-store-badge.png)](https://itunes.apple.com/us/app/river-raid-classic/id968418947?ls=1&mt=8" target="_blank)
 
-[![Get it on Google Play](/content/images/projects/google-play-badge.png)](https://play.google.com/store/apps/details?id=com.lostleafstudio.riverraid" target="_blank)
+[![Get it on Google Play](/images/projects/google-play-badge.png)](https://play.google.com/store/apps/details?id=com.lostleafstudio.riverraid" target="_blank)
 
 
