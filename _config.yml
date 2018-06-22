@@ -2,7 +2,7 @@
 title: Josh Gerdes
 description: 'Founder of Lost Leaf Studio, developer, consultant, cyclist, soccer fan, nature enthusiast and lover of beer.'
 url: 'http://joshgerdes.com' 
-baseurl: '/'
+baseurl: ''
 google_analytics: 'UA-501066-1'
 # disqus_shortname: 'your-disqus-name'
 
@@ -36,5 +36,5 @@ kramdown:
   # do not replace newlines by <br>s
   hard_wrap: false
 
-gems: ['jekyll-paginate']
+plugins: ['jekyll-paginate']
 exclude: ['README.md', 'Gemfile', 'Gemfile.lock', 'src']
