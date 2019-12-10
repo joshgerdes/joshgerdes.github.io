@@ -28,3 +28,8 @@ pygmentsStyle = "monokai"
   twitter = "joshgerdes"
   instagram = "joshgerdes"
   email   = "josh@joshgerdes.com"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
