@@ -17,7 +17,9 @@ jobs:
           hugo-version: "latest"
 
       - name: Build
-        run: touch ./public/.nojekyll | hugo --gc --minify --cleanDestinationDir
+        run: hugo --gc --minify --cleanDestinationDir
+      
+      - run: touch ./public/.nojekyll
         
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v2
