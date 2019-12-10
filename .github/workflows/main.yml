@@ -19,8 +19,6 @@ jobs:
       - name: Build
         run: hugo --gc --minify --cleanDestinationDir
       
-      - run: touch ./public/.nojekyll
-        
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v2
         env:
