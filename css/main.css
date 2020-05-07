@@ -184,6 +184,25 @@ a:hover {
   color: #666;
 }
 
+.content article > section a,
+.content article > section a:hover,
+.content article > section a:visited {
+  color: #8027b4;
+  text-decoration: none;
+}
+
+body.dark .content article > section a,
+body.dark .content article > section a:hover,
+body.dark .content article > section a:visited {
+  color: #b68fcc;
+  text-decoration: none;
+}
+
+body.dark .content article > section a:hover,
+.content article > section a:hover {
+  text-decoration: underline;
+}
+
 h1 {
   font-size: 2em;
   font-weight: 300;
@@ -202,8 +221,7 @@ img {
   max-width: 100%;
 }
 
-pre,
-code {
+pre {
   padding: 10px;
   white-space: pre-wrap;
 }
