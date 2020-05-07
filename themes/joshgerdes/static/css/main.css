@@ -145,6 +145,30 @@ main > footer nav .icons {
   font-style: italic;
 }
 
+.content ul {
+  margin: 20px 0;
+}
+
+.content table {
+  border-collapse: collapse;
+  margin: 20px 0;
+  text-align: left;
+}
+
+.content table td,
+.content table th
+{
+  padding: 10px;
+}
+
+.content table tbody tr {
+  border-top: 1px solid #999;
+}
+
+.content table tbody tr:first {
+  border-top: none;
+}
+
 .tags a {
   margin: 0 0 0 6px;
 }
