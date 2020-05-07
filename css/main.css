@@ -152,13 +152,21 @@ main > footer nav .icons {
 .content table {
   border-collapse: collapse;
   margin: 20px 0;
+  table-layout: fixed;
   text-align: left;
+  width: 100%;
 }
 
-.content table td,
 .content table th
 {
   padding: 10px;
+  word-wrap: normal;
+}
+
+.content table td
+{
+  padding: 10px;
+  word-wrap: break-word;
 }
 
 .content table tbody tr {
