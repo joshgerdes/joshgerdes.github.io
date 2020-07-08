@@ -157,14 +157,12 @@ main > footer nav .icons {
   width: 100%;
 }
 
-.content table th
-{
+.content table th {
   padding: 10px;
   word-wrap: normal;
 }
 
-.content table td
-{
+.content table td {
   padding: 10px;
   word-wrap: break-word;
 }
@@ -190,6 +188,10 @@ a:visited {
 
 a:hover {
   color: #666;
+}
+
+.download img {
+  height: 45px !important;
 }
 
 .content article > section a,
