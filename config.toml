@@ -5,7 +5,7 @@ title = "Josh Gerdes"
 theme = "joshgerdes"
 
 paginate = 12
-googleAnalytics = "UA-501066-1"
+googleAnalytics = "G-98ZZPG1KRR"
 enableRobotsTXT = true
 pygmentsCodefences = true
 pygmentsStyle = "monokai"
