@@ -3,7 +3,7 @@
     <header>
         <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
         <section>
-            <time datetime='{{ dateFormat "Jan 1, 2000" .Date }}'>{{ dateFormat "Jan 2, 2006" .Date }}</time>
+            <time datetime='{{ .Date.Format "January 2, 2006" }}'>{{ .Date.Format "January 2, 2006" }}</time>
             {{- partial "tags.html" . -}}
         </section>
     </header>
