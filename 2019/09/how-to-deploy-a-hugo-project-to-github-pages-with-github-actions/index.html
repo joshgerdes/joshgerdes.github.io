@@ -3,36 +3,39 @@
 <a href=https://instagram.com/joshgerdes title=Instagram rel="noopener noreferrer" target=_blank><i data-feather=instagram></i></a>
 <a href=https://linkedin.com/in/joshgerdes title=LinkedIn rel="noopener noreferrer" target=_blank><i data-feather=linkedin></i></a>
 <a href=mailto:josh@joshgerdes.com title="Email Me" rel="noopener noreferrer" target=_blank><i data-feather=mail></i></a>
-<a href=/index.xml title=RSS target=_blank><i data-feather=rss></i></a></section></header><section class=content><article><header><h2><a href=/2019/09/how-to-deploy-a-hugo-project-to-github-pages-with-github-actions/>How to deploy a Hugo project to GitHub Pages with GitHub Actions</a></h2><section><time datetime="Sep 9, 19000">Sep 19, 2019</time><section class=tags><a href=https://joshgerdes.com/tags/hugo/>hugo</a>
-<a href=https://joshgerdes.com/tags/github/>github</a></section class="tags"></section></header><section><p>Over the years I have tried many static site generators to help manage my personal site and other projects.</p><p>Recently, I decided I wanted to find a setup that utilized github pages and did not rely on any local tooling for building or deploying my site.</p><p>I really liked how easy it was to use <a href=https://gohugo.io/>Hugo</a> and once I found this great little project <a href=https://github.com/peaceiris/actions-hugo>GitHub Actions for Hugo</a> I knew I had a solution.</p><p>Here are some instructions detailing how I setup my site. You can find more details in the <a href=https://github.com/peaceiris/actions-hugo#getting-started>Getting Started</a> section of the <a href=https://github.com/peaceiris/actions-hugo>GitHub Actions for Hugo</a> project.</p><h2 id=1-generate-a-ssh-deploy-key>1. Generate a SSH deploy key</h2><p>Create your deploy key with the following command:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>ssh-keygen -t rsa -b <span style=color:#ae81ff>4096</span> -C <span style=color:#e6db74>&#34;</span><span style=color:#66d9ef>$(</span>git config user.email<span style=color:#66d9ef>)</span><span style=color:#e6db74>&#34;</span> -f gh-pages -N <span style=color:#e6db74>&#34;&#34;</span>
-</code></pre></div><p>This will generate 2 files:</p><ul><li>gh-pages.pub (public key)</li><li>gh-pages (private key)</li></ul><p>Next, go to the github repository <strong>Settings</strong> and do the following:</p><ul><li>Go to <strong>Deploy Keys</strong> and add your public key with <code>Allow write access</code> checked</li><li>Go to <strong>Secrets</strong> and add your private key as <code>ACTIONS_DEPLOY_KEY</code></li></ul><p>Your repository should allow actions to run workflows now.</p><h2 id=2-create-a-source-branch>2. Create a source branch</h2><p>Create a <code>source</code> branch in your repository. In the setup you will have 2 branches <code>master</code> and <code>source</code> where <code>source</code> contains all of your source files and <code>master</code> is the location where your built site files are deployed and served up.</p><h2 id=3-create-a-workflow>3. Create a workflow</h2><p>Go to the github repository <strong>Settings</strong> and under <strong>Actions</strong> turn on <code>Enable local and third party Actions for this repository</code>.</p><p>Next, in the new <code>source</code> branch create the following file: <code>.github/workflows/main.yml</code>.</p><p>Here is an example that I am using for this site:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>name</span>: <span style=color:#ae81ff>github pages</span>
-
-<span style=color:#f92672>on</span>:
-  <span style=color:#f92672>push</span>:
-    <span style=color:#f92672>branches</span>:
-      - <span style=color:#ae81ff>source</span>
-
-<span style=color:#f92672>jobs</span>:
-  <span style=color:#f92672>build-deploy</span>:
-    <span style=color:#f92672>runs-on</span>: <span style=color:#ae81ff>ubuntu-18.04</span>
-    <span style=color:#f92672>steps</span>:
-      - <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>actions/checkout@master</span>
-
-      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Setup Hugo</span>
-        <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>peaceiris/actions-hugo@v2</span>
-        <span style=color:#f92672>with</span>:
-          <span style=color:#f92672>hugo-version</span>: <span style=color:#e6db74>&#34;latest&#34;</span>
-
-      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Build</span>
-        <span style=color:#f92672>run</span>: <span style=color:#ae81ff>hugo --gc --minify --cleanDestinationDir</span>
-      
-      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Deploy</span>
-        <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>peaceiris/actions-gh-pages@v2</span>
-        <span style=color:#f92672>env</span>:
-          <span style=color:#f92672>ACTIONS_DEPLOY_KEY</span>: <span style=color:#ae81ff>${{ secrets.ACTIONS_DEPLOY_KEY }}</span>
-          <span style=color:#f92672>PUBLISH_BRANCH</span>: <span style=color:#ae81ff>master</span>
-          <span style=color:#f92672>PUBLISH_DIR</span>: <span style=color:#ae81ff>./public</span>
-</code></pre></div><h2 id=4-push-your-hugo-project>4. Push your Hugo project</h2><p>Now you can commit and push your hugo project to the <code>source</code> branch of your repository. This should trigger the new workflow for the new action which will build and deploy your site to the <code>master</code> branch.</p></section></article></section><footer><nav><a href=javascript:void(0); id=theme-toggle title="Toggle theme"><i class=sunset data-feather=sunset></i>
+<a href=/index.xml title=RSS target=_blank><i data-feather=rss></i></a></section></header><section class=content><article><header><h2><a href=/2019/09/how-to-deploy-a-hugo-project-to-github-pages-with-github-actions/>How to deploy a Hugo project to GitHub Pages with GitHub Actions</a></h2><section><time datetime='September 19, 2019'>September 19, 2019</time><section class=tags><a href=https://joshgerdes.com/tags/hugo/>hugo</a>
+<a href=https://joshgerdes.com/tags/github/>github</a></section class="tags"></section></header><section><p>Over the years I have tried many static site generators to help manage my personal site and other projects.</p><p>Recently, I decided I wanted to find a setup that utilized github pages and did not rely on any local tooling for building or deploying my site.</p><p>I really liked how easy it was to use <a href=https://gohugo.io/>Hugo</a> and once I found this great little project <a href=https://github.com/peaceiris/actions-hugo>GitHub Actions for Hugo</a> I knew I had a solution.</p><p>Here are some instructions detailing how I setup my site. You can find more details in the <a href=https://github.com/peaceiris/actions-hugo#getting-started>Getting Started</a> section of the <a href=https://github.com/peaceiris/actions-hugo>GitHub Actions for Hugo</a> project.</p><h2 id=1-generate-a-ssh-deploy-key>1. Generate a SSH deploy key</h2><p>Create your deploy key with the following command:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>ssh-keygen -t rsa -b <span style=color:#ae81ff>4096</span> -C <span style=color:#e6db74>&#34;</span><span style=color:#66d9ef>$(</span>git config user.email<span style=color:#66d9ef>)</span><span style=color:#e6db74>&#34;</span> -f gh-pages -N <span style=color:#e6db74>&#34;&#34;</span>
+</span></span></code></pre></div><p>This will generate 2 files:</p><ul><li>gh-pages.pub (public key)</li><li>gh-pages (private key)</li></ul><p>Next, go to the github repository <strong>Settings</strong> and do the following:</p><ul><li>Go to <strong>Deploy Keys</strong> and add your public key with <code>Allow write access</code> checked</li><li>Go to <strong>Secrets</strong> and add your private key as <code>ACTIONS_DEPLOY_KEY</code></li></ul><p>Your repository should allow actions to run workflows now.</p><h2 id=2-create-a-source-branch>2. Create a source branch</h2><p>Create a <code>source</code> branch in your repository. In the setup you will have 2 branches <code>master</code> and <code>source</code> where <code>source</code> contains all of your source files and <code>master</code> is the location where your built site files are deployed and served up.</p><h2 id=3-create-a-workflow>3. Create a workflow</h2><p>Go to the github repository <strong>Settings</strong> and under <strong>Actions</strong> turn on <code>Enable local and third party Actions for this repository</code>.</p><p>Next, in the new <code>source</code> branch create the following file: <code>.github/workflows/main.yml</code>.</p><p>Here is an example that I am using for this site:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>name</span>: <span style=color:#ae81ff>github pages</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>on</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>push</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>branches</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>source</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>jobs</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>build-deploy</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>runs-on</span>: <span style=color:#ae81ff>ubuntu-18.04</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>steps</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>actions/checkout@master</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Setup Hugo</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>peaceiris/actions-hugo@v2</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>with</span>:
+</span></span><span style=display:flex><span>          <span style=color:#f92672>hugo-version</span>: <span style=color:#e6db74>&#34;latest&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Build</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>run</span>: <span style=color:#ae81ff>hugo --gc --minify --cleanDestinationDir</span>
+</span></span><span style=display:flex><span>      
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Deploy</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>peaceiris/actions-gh-pages@v2</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>env</span>:
+</span></span><span style=display:flex><span>          <span style=color:#f92672>ACTIONS_DEPLOY_KEY</span>: <span style=color:#ae81ff>${{ secrets.ACTIONS_DEPLOY_KEY }}</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>PUBLISH_BRANCH</span>: <span style=color:#ae81ff>master</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>PUBLISH_DIR</span>: <span style=color:#ae81ff>./public</span>
+</span></span></code></pre></div><h2 id=4-push-your-hugo-project>4. Push your Hugo project</h2><p>Now you can commit and push your hugo project to the <code>source</code> branch of your repository. This should trigger the new workflow for the new action which will build and deploy your site to the <code>master</code> branch.</p></section></article></section><footer><nav><a href=javascript:void(0); id=theme-toggle title="Toggle theme"><i class=sunset data-feather=sunset></i>
 <i class=sunrise data-feather=sunrise></i></a>
 <a href=/posts/>Posts</a>
-<a href=/tags/>Tags</a></ul></nav><section>&copy; 2021 Josh Gerdes. All rights reserved.</section></footer><script src=https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.24.1/feather.min.js></script><script src=/js/main.js></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-98ZZPG1KRR"></script><script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-98ZZPG1KRR',{anonymize_ip:!1})}</script></main></body></html>
+<a href=/tags/>Tags</a></ul></nav><section>&copy; 2022 Josh Gerdes. All rights reserved.</section></footer><script src=https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.24.1/feather.min.js></script>
+<script src=/js/main.js></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-98ZZPG1KRR"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-98ZZPG1KRR",{anonymize_ip:!1})}</script></main></body></html>
