@@ -1,20 +1,21 @@
 baseURL = "https://joshgerdes.com/"
-languageCode = "en"
+languageCode = "en-us"
 defaultContentLanguage = "en"
 title = "Josh Gerdes"
 theme = "joshgerdes"
 
-paginate = 12
-googleAnalytics = "G-98ZZPG1KRR"
 enableRobotsTXT = true
-pygmentsCodefences = true
-pygmentsStyle = "monokai"
 
-[taxonomies]
-  tag = "tags"
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    style = "monokai"
 
-[Permalinks]
-  posts = "/:year/:month/:title"
+[pagination]
+  disableAliases = false
+  pagerSize = 12
 
 [params]
   author = "Josh Gerdes"
@@ -29,7 +30,12 @@ pygmentsStyle = "monokai"
   instagram = "joshgerdes"
   email   = "josh@joshgerdes.com"
 
-[markup]
-  [markup.goldmark]
-    [markup.goldmark.renderer]
-      unsafe = true
+[permalinks]
+  posts = "/:year/:month/:title"
+
+[services]
+  [services.googleAnalytics]
+    id = "G-98ZZPG1KRR"
+
+[taxonomies]
+  tag = "tags"

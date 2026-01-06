@@ -10,11 +10,11 @@
     {{ if isset .Params "description" }}
     {{ .Description }}
     {{ else }}
-    {{ slicestr .Summary 0 .Site.Params.summaryLength }}
+    {{ slicestr (.Summary | plainify) 0 .Site.Params.summaryLength }}
     {{ end }} &hellip;
   </section>
   <footer>
-    <time datetime='{{ .Date.Format "January 2, 2006" }}'>{{ .Date.Format "January 2, 2006" }}</time>
+    <time datetime='{{ .Date.Format "2006-01-02" }}'>{{ .Date.Format "January 2, 2006" }}</time>
     {{- partial "tags.html" . -}}
   </footer>
 </article>

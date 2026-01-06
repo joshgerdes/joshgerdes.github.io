@@ -2,20 +2,13 @@
 # See https://github.com/gohugoio/hugoThemes#themetoml for an example
 
 name = "joshgerdes"
-license = ""
-licenselink = ""
-description = ""
+license = "MIT"
+description = "A custom theme for Lost Leaf Studio at joshgerdes.com"
 homepage = "https://joshgerdes.com/"
-tags = []
+tags = ["blog", "personal", "minimal"]
 features = []
-min_version = "0.58"
+min_version = "0.128.0"
 
 [author]
   name = "Josh Gerdes"
   homepage = "https://joshgerdes.com"
-
-# If porting an existing theme
-[original]
-  name = ""
-  homepage = ""
-  repo = ""
