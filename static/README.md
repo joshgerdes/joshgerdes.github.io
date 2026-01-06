@@ -1,1 +1,1 @@
-Home of [joshgerdes.com](http://joshgerdes.com)
+Home of [joshgerdes.com](https://joshgerdes.com)

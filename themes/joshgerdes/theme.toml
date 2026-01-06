@@ -5,14 +5,14 @@ name = "joshgerdes"
 license = ""
 licenselink = ""
 description = ""
-homepage = "http://joshgerdes.com/"
+homepage = "https://joshgerdes.com/"
 tags = []
 features = []
 min_version = "0.58"
 
 [author]
   name = "Josh Gerdes"
-  homepage = "http://joshgerdes.com"
+  homepage = "https://joshgerdes.com"
 
 # If porting an existing theme
 [original]

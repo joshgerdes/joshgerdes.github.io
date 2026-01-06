@@ -1,4 +1,4 @@
-Source files for [joshgerdes.com](http://joshgerdes.com)
+Source files for [joshgerdes.com](https://joshgerdes.com)
 
 Built with [Hugo](https://gohugo.io/)
 
