@@ -1,22 +1,33 @@
 {{ define "main" }}
 <h2>Recent Posts</h2>
-{{ $pages := where site.RegularPages "Type" "in" (slice "posts") }}
-{{- range first .Site.Params.RecentPostsCount $pages -}}
-<article>
+{{- $pages := where site.RegularPages "Type" "in" (slice "posts") -}}
+{{- $count := .Site.Params.RecentPostsCount | default 10 -}}
+{{- range first $count $pages -}}
+<article itemscope itemtype="http://schema.org/BlogPosting">
   <header>
-    <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+    <h3 itemprop="headline">
+      <a href="{{ .RelPermalink }}" itemprop="url">{{ .Title }}</a>
+    </h3>
   </header>
-  <section>
-    {{ if isset .Params "description" }}
-    {{ .Description }}
-    {{ else }}
-    {{ slicestr (.Summary | plainify) 0 .Site.Params.summaryLength }}
-    {{ end }} &hellip;
+  <section itemprop="description">
+    {{- if .Description -}}
+      {{ .Description }}
+    {{- else -}}
+      {{- $summary := .Summary | plainify -}}
+      {{- $maxLength := .Site.Params.summaryLength | default 200 -}}
+      {{- if gt (len $summary) $maxLength -}}
+        {{ slicestr $summary 0 $maxLength }}
+      {{- else -}}
+        {{ $summary }}
+      {{- end -}}
+    {{- end }} &hellip;
   </section>
   <footer>
-    <time datetime='{{ .Date.Format "2006-01-02" }}'>{{ .Date.Format "January 2, 2006" }}</time>
+    <time datetime="{{ .Date.Format "2006-01-02" }}" itemprop="datePublished">
+      {{ .Date.Format "January 2, 2006" }}
+    </time>
     {{- partial "tags.html" . -}}
   </footer>
 </article>
-{{ end }}
+{{- end }}
 {{ end }}

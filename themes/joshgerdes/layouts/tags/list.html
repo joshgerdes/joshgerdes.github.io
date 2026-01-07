@@ -1,0 +1,14 @@
+{{ define "main" }}
+<h2>{{ .Title }}</h2>
+{{ if .Pages }}
+<div class="tags">
+    {{ range .Pages }}
+    <a href="{{ .Permalink }}" rel="tag">
+        {{ .Title }} <span>({{ len .Pages }})</span>
+    </a>
+    {{ end }}
+</div>
+{{ else }}
+<p>No tags found.</p>
+{{ end }}
+{{ end }}
