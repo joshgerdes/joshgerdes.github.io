@@ -1,0 +1,14 @@
+{{ define "main" }}
+<h2>{{ .Title }}</h2>
+{{ if gt (len .Pages) 0 }}
+<ul role="list">
+    {{ range .Pages }}
+    <li>
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    </li>
+    {{ end }}
+</ul>
+{{ else }}
+<p>No items found.</p>
+{{ end }}
+{{ end }}

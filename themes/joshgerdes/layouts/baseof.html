@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang | default "en" }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    {{- $title := cond .IsHome .Site.Title (printf "%s | %s" .Title .Site.Title) -}}
+    {{- if .Params.heading -}}
+        {{- $title = .Params.heading -}}
+    {{- end -}}
+    <title>{{ $title }}</title>
+    
+    <meta name="description" content="{{ .Description | default .Summary | default .Site.Params.Description | plainify | truncate 160 }}">
+    <meta name="author" content="{{ .Params.Author | default .Site.Params.Author }}">
+    <link rel="canonical" href="{{ .Permalink }}">
+    
+    <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+    <meta property="og:title" content="{{ $title }}">
+    <meta property="og:description" content="{{ .Description | default .Summary | default .Site.Params.Description | plainify | truncate 160 }}">
+    <meta property="og:url" content="{{ .Permalink }}">
+    <meta property="og:site_name" content="{{ .Site.Title }}">
+    {{ with .Params.image }}<meta property="og:image" content="{{ . | absURL }}">{{ end }}
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{ $title }}">
+    <meta name="twitter:description" content="{{ .Description | default .Summary | default .Site.Params.Description | plainify | truncate 160 }}">
+    {{ with .Site.Params.Social.Twitter }}<meta name="twitter:site" content="@{{ . }}">{{ end }}
+    {{ with .Params.image }}<meta name="twitter:image" content="{{ . | absURL }}">{{ end }}
+    
+    <link rel="icon" type="image/x-icon" href="/images/favicons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/images/favicons/favicon-48x48.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon.png">
+    <link rel="manifest" href="/images/favicons/site.webmanifest">
+    
+
+    {{ with .OutputFormats.Get "RSS" -}}
+    <link rel="alternate" type="application/rss+xml" title="{{ site.Title }}" href="{{ .RelPermalink }}">
+    {{- end }}
+
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap">
+    
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            document.documentElement.classList.add(theme);
+        })();
+    </script>
+</head>
+
+<body class="light">
+    <main>
+        {{- partial "header.html" . -}}
+        <section class="content">
+            {{- block "main" . }}{{- end }}
+        </section>
+        {{- partial "footer.html" . -}}
+    </main>
+</body>
+</html>

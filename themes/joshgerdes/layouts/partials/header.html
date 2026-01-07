@@ -1,0 +1,55 @@
+<header>
+    <h1><a href="{{ .Site.BaseURL }}" rel="home">{{ .Site.Title }}</a></h1>
+    <nav aria-label="Social media links" class="social-links">
+        {{ with .Site.Params.Social.GitHub }}
+        <a href="https://github.com/{{ . }}" 
+           title="GitHub" 
+           rel="noopener noreferrer" 
+           target="_blank"
+           aria-label="Visit my GitHub profile">
+            <i data-feather="github" aria-hidden="true"></i>
+        </a>
+        {{ end }}
+        {{ with .Site.Params.Social.Twitter }}
+        <a href="https://twitter.com/{{ . }}" 
+           title="Twitter" 
+           rel="noopener noreferrer" 
+           target="_blank"
+           aria-label="Visit my Twitter profile">
+            <i data-feather="twitter" aria-hidden="true"></i>
+        </a>
+        {{ end }}
+        {{ with .Site.Params.Social.Instagram }}
+        <a href="https://instagram.com/{{ . }}" 
+           title="Instagram" 
+           rel="noopener noreferrer" 
+           target="_blank"
+           aria-label="Visit my Instagram profile">
+            <i data-feather="instagram" aria-hidden="true"></i>
+        </a>
+        {{ end }}
+        {{ with .Site.Params.Social.LinkedIn }}
+        <a href="https://linkedin.com/in/{{ . }}" 
+           title="LinkedIn" 
+           rel="noopener noreferrer" 
+           target="_blank"
+           aria-label="Visit my LinkedIn profile">
+            <i data-feather="linkedin" aria-hidden="true"></i>
+        </a>
+        {{ end }}
+        {{ with .Site.Params.Social.Email }}
+        <a href="mailto:{{ . }}" 
+           title="Email Me" 
+           rel="noopener noreferrer"
+           aria-label="Send me an email">
+            <i data-feather="mail" aria-hidden="true"></i>
+        </a>
+        {{ end }}
+        <a href="/index.xml" 
+           title="RSS Feed" 
+           target="_blank"
+           aria-label="Subscribe to RSS feed">
+            <i data-feather="rss" aria-hidden="true"></i>
+        </a>
+    </nav>
+</header>
